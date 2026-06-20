@@ -1,0 +1,470 @@
+@import "tailwindcss";
+
+/* ============================================
+   KANDYAN WEDDING INVITATION - DESIGN SYSTEM
+   ============================================ */
+
+:root {
+  --ivory: #D2E6DB;
+  --ivory-dark: #C5DCCF;
+  --beige: #B6D0C2;
+  --beige-light: #E1EEE6;
+  --gold: #1F4A3A;
+  --dark-gold: #123326;
+  --gold-light: #316954;
+  --brown: #1A3B2E;
+  --brown-light: #2C5846;
+  --cream: #C5DCCF;
+  --warm-white: #D8EADF;
+  --deep-bg: #0D2B1F; /* Deep emerald background */
+}
+
+/* ---- Base ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--brown);
+  overflow-x: hidden;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Typography ---- */
+.font-title {
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+}
+
+.font-body {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+}
+
+.gold-text {
+  color: var(--dark-gold);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+/* ---- Backgrounds ---- */
+.invitation-gradient {
+  background: transparent;
+}
+
+.paper-texture {
+  background-color: var(--ivory);
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ---- Gold Border & Ornaments ---- */
+.gold-border {
+  border: 2px solid var(--gold);
+}
+
+.gold-border-thin {
+  border: 1px solid var(--gold);
+}
+
+/* ---- Stamp Card ---- */
+.stamp-card {
+  position: relative;
+  background: var(--ivory);
+  border: 2px solid var(--gold);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    0 1px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Slightly rounded corners for the stamps */
+}
+
+/* Create the perforated stamp edge effect */
+.stamp-card::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 2px dashed rgba(255,255,255,0.3);
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.stamp-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--gold);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ---- Corner Ornament Pseudo-elements ---- */
+.corner-tl::before {
+  content: '❧';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: var(--gold);
+  font-size: 16px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.corner-tr::after {
+  content: '❧';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: var(--gold);
+  font-size: 16px;
+  opacity: 0.6;
+  transform: scaleX(-1);
+  z-index: 1;
+}
+
+/* ---- Wax Seal ---- */
+.wax-seal {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2B5746, #1A3B2E 50%, #0D2B1F 100%);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #316954;
+}
+
+.wax-seal-red {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2B5746, #1A3B2E 50%, #0D2B1F 100%);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Polaroid Cards ---- */
+.polaroid {
+  background: #EAF3EE;
+  padding: 6px;
+  padding-bottom: 28px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border: 1px solid var(--ivory-dark);
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+}
+
+/* ---- Calendar ---- */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  text-align: center;
+}
+
+.calendar-day {
+  padding: 6px 2px;
+  font-size: 13px;
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+  color: var(--brown);
+  cursor: default;
+  border-radius: 2px;
+}
+
+.calendar-day-highlight {
+  background: var(--gold);
+  color: white !important;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.calendar-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--brown-light);
+  text-transform: uppercase;
+  padding: 4px 2px;
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Dividers ---- */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.gold-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+/* ---- Navigation Items ---- */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(31, 74, 58, 0.15);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nav-item:last-child {
+  border-bottom: none;
+}
+
+.nav-item:active {
+  background: rgba(31, 74, 58, 0.08);
+}
+
+.nav-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(31, 74, 58, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-gold);
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+/* ---- Shimmer ---- */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---- Animations ---- */
+@keyframes shimmer {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.floating {
+  animation: floating 3.5s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.seal-pulse {
+  animation: sealPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes stampPress {
+  0% { transform: scale(1.8) rotate(-15deg); opacity: 0; }
+  50% { transform: scale(0.92) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.stamp-press {
+  animation: stampPress 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.bounce-arrow {
+  animation: bounceArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(43, 87, 70, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(43, 87, 70, 0.6); }
+}
+
+.gold-glow {
+  animation: goldGlow 2s ease-in-out infinite;
+}
+
+/* ---- Scroll margin for nav ---- */
+section {
+  scroll-margin-top: 20px;
+}
+
+/* ---- Responsive container ---- */
+.mobile-container {
+  max-width: 430px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Detail row ---- */
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.detail-icon {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* ---- Timeline ---- */
+.timeline-line {
+  position: absolute;
+  left: 24px;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--gold) 0px,
+    var(--gold) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.timeline-dot {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--cream);
+}
+
+/* ---- RSVP Buttons ---- */
+.rsvp-btn {
+  flex: 1;
+  padding: 12px 8px;
+  border: 1.5px solid var(--gold);
+  background: transparent;
+  color: var(--brown);
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.rsvp-btn:hover,
+.rsvp-btn-active {
+  background: var(--gold);
+  color: white;
+}
+
+/* ---- Action buttons ---- */
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 12px;
+  border: 1.5px solid var(--gold);
+  background: var(--ivory);
+  color: var(--brown);
+  font-family: var(--font-cinzel), 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  flex: 1;
+  border-radius: 4px;
+}
+
+.action-btn:hover {
+  background: rgba(31, 74, 58, 0.08);
+}
