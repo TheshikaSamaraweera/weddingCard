@@ -143,7 +143,7 @@ export default function WeddingDetailsStamp() {
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                 src="/home2.png"
-                alt="Kandyan Heritage Hotel"
+                alt="Manora Heritage"
                 className="w-full max-w-[230px] object-contain drop-shadow-md"
               />
             </div>

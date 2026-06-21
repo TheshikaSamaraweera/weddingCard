@@ -5,19 +5,19 @@ import { Calendar, MapPin, Search } from "lucide-react";
 import EmptyStamp from "./EmptyStamp";
 import RSVPForm from "./RSVPForm";
 
-// August 2025 calendar data
-// Aug 1, 2025 = Friday
+// July 2026 calendar data
+// July 1, 2026 = Wednesday
 const calendarDays = [
-  // Row 1: empty Mon-Thu, then Fri=1, Sat=2, Sun=3
-  null, null, null, null, 1, 2, 3,
+  // Row 1: empty Mon-Tue, then Wed=1, Thu=2, Fri=3, Sat=4, Sun=5
+  null, null, 1, 2, 3, 4, 5,
   // Row 2
-  4, 5, 6, 7, 8, 9, 10,
+  6, 7, 8, 9, 10, 11, 12,
   // Row 3
-  11, 12, 13, 14, 15, 16, 17,
+  13, 14, 15, 16, 17, 18, 19,
   // Row 4
-  18, 19, 20, 21, 22, 23, 24,
+  20, 21, 22, 23, 24, 25, 26,
   // Row 5
-  25, 26, 27, 28, 29, 30, 31,
+  27, 28, 29, 30, 31, null, null,
 ];
 
 const dayHeaders = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
@@ -83,9 +83,9 @@ const OrnateDivider = () => (
 
 export default function ReceptionStamp() {
   const googleMapsUrl =
-    "https://maps.google.com/?q=Kandyan+Heritage+Hotel+Kandy";
+    "https://maps.google.com/?q=Manora+Heritage+Jasmin+Hall+Dambadeniya";
   const calendarUrl =
-    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muditha+%26+Maheli+Wedding&dates=20250824T100000/20250824T200000&location=Kandyan+Heritage+Hotel,+Kandy";
+    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muditha+%26+Maheli+Wedding&dates=20260720T103000/20260720T160000&location=Manora+Heritage,+Jasmin+Hall,+Dambadeniya";
 
   return (
     <section id="reception" className="min-h-screen flex items-center justify-center px-3 py-16">
@@ -143,7 +143,7 @@ export default function ReceptionStamp() {
               {/* Calendar Month Header */}
               <div className="relative flex items-center justify-center mb-2.5 px-1">
                 <h3 className="font-title text-[12.5px] tracking-[0.18em] text-[#123326] uppercase font-bold">
-                  August 2025
+                  July 2026
                 </h3>
                 <Search size={14} className="absolute right-0 text-[#123326] opacity-90 cursor-pointer" />
               </div>
@@ -168,7 +168,7 @@ export default function ReceptionStamp() {
                   >
                     {day ? (
                       <div
-                        className={`font-title text-[10px] font-semibold flex items-center justify-center transition-all duration-300 ${day === 24
+                        className={`font-title text-[10px] font-semibold flex items-center justify-center transition-all duration-300 ${day === 20
                           ? "bg-[#123326] text-[#E1EEE6] rounded-full w-[20px] h-[20px] font-bold shadow-sm"
                           : "text-[#123326]"
                           }`}

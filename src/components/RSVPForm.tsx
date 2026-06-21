@@ -53,7 +53,7 @@ export default function RSVPForm() {
                 RSVP
               </h3>
               <p className="font-title text-[9.5px] tracking-[0.12em] text-[#2C5846] mt-1.5 uppercase font-semibold">
-                Kindly confirm by 10th August 2025
+                Kindly confirm by 10th June 2026
               </p>
             </div>
 

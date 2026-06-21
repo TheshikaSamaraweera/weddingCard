@@ -209,7 +209,7 @@ export default function Home() {
                       variants={textRevealUp}
                     >
                       {invitationData.venue}<br />
-                      Kandy
+                      {invitationData.venueAddress}
                     </motion.p>
 
                     <motion.div
@@ -218,7 +218,7 @@ export default function Home() {
                     >
                       <img
                         src="/home1.png"
-                        alt="Kandyan Heritage Hotel"
+                        alt="Manora Heritage"
                         className="w-full max-w-[230px] object-contain"
                       />
                     </motion.div>
