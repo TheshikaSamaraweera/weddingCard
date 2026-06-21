@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
 
@@ -8,17 +8,23 @@ interface EnvelopeProps {
   onOpen: () => void;
 }
 
-export default function Envelope({ onOpen }: EnvelopeProps) {
-  const [isOpen, setIsOpen] = useState(false);
+type Phase = "intro" | "waiting" | "opening";
 
-  // Trigger the opening animation
-  const handleOpen = () => {
-    if (isOpen) return;
-    setIsOpen(true);
-    // Wait for the open animation to play, then signal to parent to transition to main app
-    setTimeout(() => {
-      onOpen();
-    }, 1500); // 1.5s delay to show the open envelope before crossfading to content
+export default function Envelope({ onOpen }: EnvelopeProps) {
+  const [phase, setPhase] = useState<Phase>("intro");
+  const openVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleSwipeUp = () => {
+    if (phase === "waiting") {
+      setPhase("opening");
+      if (openVideoRef.current) {
+        openVideoRef.current.play().catch((err) => {
+          console.error("Video play failed:", err);
+          // Fallback just in case video fails to play
+          onOpen();
+        });
+      }
+    }
   };
 
   return (
@@ -26,32 +32,46 @@ export default function Envelope({ onOpen }: EnvelopeProps) {
       // We use onPanEnd to detect a swipe without physically moving the container
       onPanEnd={(e, info) => {
         if (info.offset.y < -50) {
-          handleOpen();
+          handleSwipeUp();
         }
       }}
       className="min-h-screen flex flex-col items-center justify-center bg-[#0D2B1F] select-none relative overflow-hidden touch-none"
     >
       <div className="w-full h-full absolute inset-0 flex items-center justify-center max-w-[430px] mx-auto">
-        <AnimatePresence mode="wait">
-          {!isOpen ? (
+        
+        {/* Intro Video */}
+        <video
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${phase === "intro" ? "opacity-100 z-20" : "opacity-0 z-0"}`}
+          src="/inro.mp4"
+          autoPlay
+          playsInline
+          muted
+          onEnded={() => setPhase("waiting")}
+        />
+
+        {/* Envelope Open Video */}
+        <video
+          ref={openVideoRef}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${phase !== "intro" ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+          src="/envilopOpen.mp4"
+          playsInline
+          muted
+          onEnded={() => onOpen()}
+          preload="auto"
+        />
+
+        {/* Swipe up prompt overlay */}
+        <AnimatePresence>
+          {phase === "waiting" && (
             <motion.div
-              key="closed"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full"
-              style={{
-                backgroundImage: "url('/envilop_close.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute bottom-16 left-0 right-0 text-center z-30"
             >
-              {/* Swipe up prompt overlay */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                className="absolute bottom-16 left-0 right-0 text-center"
               >
                 <ChevronUp
                   size={36}
@@ -59,27 +79,12 @@ export default function Envelope({ onOpen }: EnvelopeProps) {
                   aria-hidden="true"
                 />
                 <p className="font-body text-xl mt-2 text-white drop-shadow-md tracking-wide">
-                  Slide upward to unveil
+                  Swipe up to open
                 </p>
                 <p className="font-title tracking-[0.25em] text-[11px] text-white/80 mt-1 uppercase drop-shadow-md">
                   Our Invitation
                 </p>
               </motion.div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="opened"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute inset-0 w-full h-full"
-              style={{
-                backgroundImage: "url('/envilop_open.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
             </motion.div>
           )}
         </AnimatePresence>

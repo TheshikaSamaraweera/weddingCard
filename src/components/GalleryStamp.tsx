@@ -41,7 +41,7 @@ export default function GalleryStamp() {
               <div className="polaroid-tape" aria-hidden="true" />
 
               {/* Photo */}
-              <div className="aspect-square overflow-hidden bg-[#C5DCCF]">
+              <div className="aspect-square overflow-hidden bg-[#EBE9D1]">
                 <img
                   src={photo.src}
                   alt={`Moment ${index + 1}`}

@@ -6,17 +6,17 @@ import { Heart } from "lucide-react";
 
 // Leaf Sprig SVG icon to match the design in the mockup
 const LeafSprigIcon = () => (
-  <svg 
-    viewBox="0 0 24 24" 
-    className="w-[20px] h-[20px] shrink-0" 
+  <svg
+    viewBox="0 0 24 24"
+    className="w-[20px] h-[20px] shrink-0"
     fill="currentColor"
   >
-    <path 
-      d="M4.5 19.5 C8 16 16 8 20 4" 
-      stroke="currentColor" 
-      strokeWidth="1.8" 
-      strokeLinecap="round" 
-      fill="none" 
+    <path
+      d="M4.5 19.5 C8 16 16 8 20 4"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      fill="none"
     />
     <path d="M8.5 15.5 C6.5 15 5.5 13 6.5 11.5 C7.5 10 9.5 11 10.5 12.5 C10.5 12.5 9 14.5 8.5 15.5 Z" />
     <path d="M12.5 11.5 C10.5 11 9.5 9 10.5 7.5 C11.5 6 13.5 7 14.5 8.5 C14.5 8.5 13 10.5 12.5 11.5 Z" />
@@ -58,18 +58,17 @@ export default function RSVPForm() {
             </div>
 
             {/* RSVP Buttons Grid */}
-            <div className="grid grid-cols-2 gap-3 w-full">
+            <div className="grid grid-cols-2 gap-3 w-[75%] mx-auto">
               <button
                 onClick={() => submitRSVP("attending")}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${
-                  attendance === "attending"
-                    ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
-                    : "bg-[#D6EAE0]/50 hover:bg-[#D6EAE0]/80 text-[#123326] border-[#123326]/20"
-                }`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${attendance === "attending"
+                  ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
+                  : "bg-[#EBE9D1]/50 hover:bg-[#EBE9D1]/80 text-[#123326] border-[#123326]/20"
+                  }`}
               >
-                <Heart 
-                  size={20} 
-                  className={`shrink-0 ${attendance === "attending" ? "fill-[#E1EEE6] text-[#E1EEE6]" : "fill-[#123326] text-[#123326]"}`} 
+                <Heart
+                  size={20}
+                  className={`shrink-0 ${attendance === "attending" ? "fill-[#E1EEE6] text-[#E1EEE6]" : "fill-[#123326] text-[#123326]"}`}
                 />
                 <div className="flex flex-col items-start leading-[1.15] font-title text-[9.5px] font-bold tracking-wider">
                   <span>HAPPILY</span>
@@ -79,11 +78,10 @@ export default function RSVPForm() {
 
               <button
                 onClick={() => submitRSVP("blessings")}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${
-                  attendance === "blessings"
-                    ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
-                    : "bg-[#D6EAE0]/50 hover:bg-[#D6EAE0]/80 text-[#123326] border-[#123326]/20"
-                }`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${attendance === "blessings"
+                  ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
+                  : "bg-[#EBE9D1]/50 hover:bg-[#EBE9D1]/80 text-[#123326] border-[#123326]/20"
+                  }`}
               >
                 <div className={attendance === "blessings" ? "text-[#E1EEE6]" : "text-[#123326]"}>
                   <LeafSprigIcon />

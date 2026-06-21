@@ -33,8 +33,8 @@ const CornerOrnament = ({ className }: { className?: string }) => (
 
 // Tiny top center accent decoration
 const TopAccentOrnament = () => (
-  <svg 
-    viewBox="0 0 30 10" 
+  <svg
+    viewBox="0 0 30 10"
     className="w-7 h-2 text-[#C3A261] opacity-75"
     fill="currentColor"
   >
@@ -129,13 +129,13 @@ export default function BlessingSeal() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[410px]"
       >
-        <EmptyStamp showPostmark={false} className="pb-8">
+        <EmptyStamp showPostmark={false} className="pb-8 h-[620px]">
           {/* Custom Gold Corner Ornaments */}
           <CornerOrnament className="absolute top-5 left-5" />
           <CornerOrnament className="absolute top-5 right-5 rotate-90" />
           <CornerOrnament className="absolute bottom-5 left-5 -rotate-90" />
           <CornerOrnament className="absolute bottom-5 right-5 rotate-180" />
-          
+
           {/* Tiny accent decoration at the top center */}
           <div className="absolute top-[22px] left-1/2 -translate-x-1/2">
             <TopAccentOrnament />
@@ -145,11 +145,11 @@ export default function BlessingSeal() {
           <BottomLeftFlower />
           <BottomRightFlower />
 
-          <div className="flex flex-col items-center justify-between w-full h-full relative z-10 pt-2 min-h-[420px]">
-            
+          <div className="flex flex-col items-center justify-between w-full h-full relative z-10 pt-10 min-h-[420px]">
+
             {/* Header Area */}
-            <div className="text-center mb-2">
-              <h2 className="font-title text-[22px] text-[#123326] tracking-[0.15em] uppercase font-bold text-center leading-none">
+            <div className="text-center mb-2 mt-10">
+              <h2 className="font-title text-[20px] text-[#123326] tracking-[0.15em] uppercase font-bold text-center leading-none">
                 SEAL YOUR BLESSINGS
               </h2>
               <p className="font-title text-[10.5px] tracking-[0.18em] text-[#2C5846] mt-2 uppercase font-semibold">
@@ -158,7 +158,7 @@ export default function BlessingSeal() {
             </div>
 
             {/* Central Seal Area with flanking branches */}
-            <div className="relative my-4 flex items-center justify-center w-[160px] h-[160px]">
+            <div className="relative my-2 flex items-center justify-center w-[200px] h-[200px]">
               {/* Flanking leaf branches */}
               <LeftBranch />
               <RightBranch />
@@ -176,13 +176,13 @@ export default function BlessingSeal() {
                     exit={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="wax-seal w-[130px] h-[130px] shadow-xl gold-glow">
+                    <div className="wax-seal w-[170px] h-[170px] shadow-xl gold-glow">
                       <div className="text-center">
-                        <span className="text-white text-3xl block mb-0.5">♥</span>
-                        <span className="text-white/90 font-title text-[9.5px] tracking-widest block font-bold leading-tight">
+                        <span className="text-white text-4xl block mb-0.5">♥</span>
+                        <span className="text-white/90 font-title text-[10.5px] tracking-widest block font-bold leading-tight">
                           TAP TO
                         </span>
-                        <span className="text-white/90 font-title text-[9.5px] tracking-widest block font-bold leading-tight">
+                        <span className="text-white/90 font-title text-[10.5px] tracking-widest block font-bold leading-tight">
                           SEAL
                         </span>
                       </div>
@@ -193,27 +193,26 @@ export default function BlessingSeal() {
                     key="sealed"
                     className="absolute stamp-press z-20"
                   >
-                    <img 
-                      src="/seal2.png" 
-                      alt="Sealed Blessings" 
-                      className="w-[140px] h-[140px] object-contain drop-shadow-xl" 
+                    <img
+                      src="/seal2.png"
+                      alt="Sealed Blessings"
+                      className="w-[180px] h-[180px] object-contain drop-shadow-xl"
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Bottom Credit Area */}
-            <div className="text-center mt-2 flex flex-col items-center">
-              <p className="font-body text-[32px] italic text-[#123326] leading-none mb-1 font-light">
-                With Love
+            With Love 🤍
+            <p className="font-title text-[16px] tracking-[0.18em] text-[#123326] uppercase font-bold">
+              MUDITHA & MAHELI
+            </p>
+            <div className="text-center mt-14 flex flex-col items-center">
+              <p className="font-title text-[14px] font-light text-[#123326] tracking-[0.15em] uppercase">
+
               </p>
 
-              <span className="text-[#123326] text-sm block mb-1">♥</span>
-
-              <h3 className="font-title text-[18px] font-bold text-[#123326] tracking-[0.15em] uppercase">
-                {invitationData.groom} &amp; {invitationData.bride}
-              </h3>
+              <span className="text-[#123326] text-sm block mt-2 mb-1">♥</span>
             </div>
 
           </div>

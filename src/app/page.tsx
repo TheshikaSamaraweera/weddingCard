@@ -51,7 +51,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: 0.2 }}
                 className="w-full max-w-[410px]"
               >
-                <EmptyStamp showPostmark={true}>
+                <EmptyStamp showPostmark={true} className="h-[620px]">
                   <div className="flex flex-col items-center justify-center w-full relative z-[1] pt-6 pb-2 px-2">
                     {/* Top lotus ornament */}
                     <div className="mx-auto text-[#1F4A3A] mb-5">

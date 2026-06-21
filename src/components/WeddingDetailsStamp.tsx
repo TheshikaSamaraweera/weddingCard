@@ -58,33 +58,25 @@ export default function WeddingDetailsStamp() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[410px]"
       >
-        <EmptyStamp showPostmark={false} className="pb-6">
+        <EmptyStamp showPostmark={false} className="pb-6 h-[620px]">
           {/* Postmark Seal Image */}
-          <img 
-            src="/seal1.png" 
-            alt="Muditha & Maheli Seal" 
-            className="absolute top-24 right-2 w-[100px] h-[100px] object-contain opacity-85 z-30" 
-          />
+
 
           <div className="flex flex-col items-center w-full h-full justify-between relative z-10 pt-4">
-            
+
             {/* Header Area */}
             <div className="flex flex-col items-center w-full px-4">
               <div className="mb-2 text-[#0D2B1F]">
-                <TempleIcon />
+                {/* <TempleIcon /> */}
               </div>
-              <h2 className="font-title text-[22px] text-[#0D2B1F] tracking-widest uppercase font-bold text-center">
+              <h2 className="font-title text-[22px] text-[#0D2B1F] tracking-widest uppercase font-bold text-center mt-14">
                 WEDDING DETAILS
               </h2>
-              
+
               {/* Fancy Divider */}
               <div className="flex items-center justify-center gap-3 my-4">
                 <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-[#0D2B1F]/60" />
-                <div className="flex items-center justify-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full border border-[#0D2B1F]/80" />
-                  <div className="w-2 h-2 rotate-45 border border-[#0D2B1F]/80" />
-                  <div className="w-1.5 h-1.5 rounded-full border border-[#0D2B1F]/80" />
-                </div>
+                <img src="/seal1.png" alt="Seal Ornament" className="w-8 h-8 object-contain opacity-85" />
                 <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-[#0D2B1F]/60" />
               </div>
 
@@ -93,12 +85,12 @@ export default function WeddingDetailsStamp() {
               </h3>
 
               {/* Details List */}
-              <div className="w-full space-y-4 px-2">
+              <div className="w-full space-y-4 px-2 pl-12">
                 {details.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <motion.div 
-                      key={item.label} 
+                    <motion.div
+                      key={item.label}
                       className="flex items-start gap-4"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -124,17 +116,17 @@ export default function WeddingDetailsStamp() {
 
             {/* Bottom Graphic - home2 */}
             <div className="w-full flex justify-center mt-4 relative z-20">
-              <motion.img 
+              <motion.img
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                src="/home2.png" 
-                alt="Kandyan Heritage Hotel" 
-                className="w-full max-w-[230px] object-contain drop-shadow-md" 
+                src="/home2.png"
+                alt="Kandyan Heritage Hotel"
+                className="w-full max-w-[230px] object-contain drop-shadow-md"
               />
             </div>
-            
+
           </div>
         </EmptyStamp>
       </motion.div>

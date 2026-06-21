@@ -52,7 +52,24 @@ export default function StampNavigation() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-16 relative">
+    <section className="min-h-screen flex items-center justify-center px-4 py-16 relative overflow-hidden">
+      {/* Elegant Side Borders using SVG */}
+      <div className="absolute left-0 top-0 bottom-0 w-24 pointer-events-none opacity-20">
+        <svg className="w-full h-full text-[#D2E6DB]" preserveAspectRatio="none" viewBox="0 0 100 1000">
+          <path d="M 0 0 Q 80 100, 30 200 T 50 400 T 20 600 T 60 800 T 0 1000" fill="none" stroke="currentColor" strokeWidth="2" />
+          {Array.from({ length: 10 }).map((_, i) => (
+            <path key={i} d={`M ${30 + (i%2)*20} ${i * 100 + 50} C ${60 + (i%2)*30} ${i * 100 + 30}, ${80 + (i%2)*20} ${i * 100 + 70}, ${30 + (i%2)*20} ${i * 100 + 50}`} fill="currentColor" />
+          ))}
+        </svg>
+      </div>
+      <div className="absolute right-0 top-0 bottom-0 w-24 pointer-events-none opacity-20 scale-x-[-1]">
+        <svg className="w-full h-full text-[#D2E6DB]" preserveAspectRatio="none" viewBox="0 0 100 1000">
+          <path d="M 0 0 Q 80 100, 30 200 T 50 400 T 20 600 T 60 800 T 0 1000" fill="none" stroke="currentColor" strokeWidth="2" />
+          {Array.from({ length: 10 }).map((_, i) => (
+            <path key={i} d={`M ${30 + (i%2)*20} ${i * 100 + 50} C ${60 + (i%2)*30} ${i * 100 + 30}, ${80 + (i%2)*20} ${i * 100 + 70}, ${30 + (i%2)*20} ${i * 100 + 50}`} fill="currentColor" />
+          ))}
+        </svg>
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -63,18 +80,21 @@ export default function StampNavigation() {
         {/* Header Section */}
         <div className="text-center mb-8">
           <div className="mx-auto text-[#D2E6DB] mb-3 flex justify-center">
-            <svg width="40" height="30" viewBox="0 0 40 30" fill="currentColor">
-              <path d="M20,0 Q25,15 35,20 Q25,20 20,30 Q15,20 5,20 Q15,15 20,0 Z" />
-              <circle cx="20" cy="15" r="2" fill="#0D2B1F" />
+            <svg width="80" height="35" viewBox="0 0 100 40" fill="currentColor">
+              <path d="M50 0 C55 10, 75 15, 90 20 C75 25, 55 30, 50 40 C45 30, 25 25, 10 20 C25 15, 45 10, 50 0 Z" />
+              <path d="M50 12 C53 15, 62 18, 68 20 C62 22, 53 25, 50 28 C47 25, 38 22, 32 20 C38 18, 47 15, 50 12 Z" fill="#0D2B1F" />
+              <circle cx="50" cy="20" r="3" fill="#D2E6DB" />
+              <circle cx="20" cy="20" r="2" fill="currentColor" />
+              <circle cx="80" cy="20" r="2" fill="currentColor" />
             </svg>
           </div>
           <h2 className="font-title text-[22px] tracking-[0.15em] text-[#D2E6DB] uppercase leading-snug">
             Our Wedding<br />Journey
           </h2>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="h-[1px] w-6 bg-gradient-to-r from-transparent to-[#D2E6DB]/50" />
-            <div className="w-1.5 h-1.5 rotate-45 border border-[#D2E6DB]/60" />
-            <div className="h-[1px] w-6 bg-gradient-to-l from-transparent to-[#D2E6DB]/50" />
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#D2E6DB]/80" />
+            <div className="w-2 h-2 rotate-45 border border-[#D2E6DB] bg-[#D2E6DB]/20" />
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#D2E6DB]/80" />
           </div>
         </div>
 
@@ -90,17 +110,17 @@ export default function StampNavigation() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => scrollTo(item.target)}
-                className="w-full relative bg-[var(--ivory)] border-2 border-[#1F4A3A] p-1.5 shadow-lg block hover:bg-[#C5DCCF] transition-colors"
+                className="w-full relative bg-[#F7F6E2] border-2 border-[#1F4A3A] p-1.5 shadow-lg block hover:bg-[#EBE9D1] transition-colors"
                 aria-label={`Go to ${item.title}`}
               >
                 {/* Inner Border with Dots */}
                 <div className="absolute inset-[4px] border border-[#1F4A3A]/60 pointer-events-none" />
                 
                 {/* Corner Dots (placed explicitly over the inner border corners) */}
-                <div className="absolute top-1 left-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[var(--ivory)]" />
-                <div className="absolute top-1 right-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[var(--ivory)]" />
-                <div className="absolute bottom-1 left-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[var(--ivory)]" />
-                <div className="absolute bottom-1 right-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[var(--ivory)]" />
+                <div className="absolute top-1 left-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[#F7F6E2]" />
+                <div className="absolute top-1 right-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[#F7F6E2]" />
+                <div className="absolute bottom-1 left-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[#F7F6E2]" />
+                <div className="absolute bottom-1 right-1 w-1 h-1 rounded-full border border-[#1F4A3A] bg-[#F7F6E2]" />
 
                 <div className="flex w-full relative z-10 py-3 px-2 items-center">
                   {/* Icon Section */}

@@ -50,8 +50,8 @@ const CornerOrnament = ({ className }: { className?: string }) => (
 
 // Tiny top center accent decoration
 const TopAccentOrnament = () => (
-  <svg 
-    viewBox="0 0 30 10" 
+  <svg
+    viewBox="0 0 30 10"
     className="w-7 h-2 text-[#C3A261] opacity-75"
     fill="currentColor"
   >
@@ -64,9 +64,9 @@ const TopAccentOrnament = () => (
 const OrnateDivider = () => (
   <div className="flex items-center justify-center w-full my-4">
     <div className="h-[1.5px] w-20 bg-gradient-to-r from-transparent to-[#123326]/30" />
-    <svg 
-      viewBox="0 0 50 15" 
-      className="w-14 h-4 text-[#123326] mx-2 shrink-0" 
+    <svg
+      viewBox="0 0 50 15"
+      className="w-14 h-4 text-[#123326] mx-2 shrink-0"
       fill="currentColor"
     >
       <circle cx="25" cy="7.5" r="2" className="text-[#C3A261]" />
@@ -96,22 +96,22 @@ export default function ReceptionStamp() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[410px]"
       >
-        <EmptyStamp showPostmark={false} className="pb-8">
+        <EmptyStamp showPostmark={false} className="pb-8 h-[620px]">
           {/* Custom Gold Corner Ornaments */}
           <CornerOrnament className="absolute top-5 left-5" />
           <CornerOrnament className="absolute top-5 right-5 rotate-90" />
           <CornerOrnament className="absolute bottom-5 left-5 -rotate-90" />
           <CornerOrnament className="absolute bottom-5 right-5 rotate-180" />
-          
+
           {/* Tiny accent decoration at the top center */}
           <div className="absolute top-[22px] left-1/2 -translate-x-1/2">
             <TopAccentOrnament />
           </div>
 
           <div className="flex flex-col items-center w-full h-full relative z-10 pt-2">
-            
+
             {/* Header */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-3 mt-16">
               <h2 className="font-title text-[22px] text-[#123326] tracking-[0.2em] uppercase font-bold text-center leading-none">
                 RECEPTION
               </h2>
@@ -125,46 +125,45 @@ export default function ReceptionStamp() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-[#D6EAE0]/50 border border-[#A6C9B7]/40 p-4 pb-3 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)] w-full mb-3"
+              className="bg-[#EBE9D1]/50 border border-[#A6C9B7]/40 p-2 pb-2 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)] w-[85%] mb-3"
             >
               {/* Calendar Month Header */}
-              <div className="relative flex items-center justify-center mb-3.5 px-1">
-                <h3 className="font-title text-[14.5px] tracking-[0.18em] text-[#123326] uppercase font-bold">
+              <div className="relative flex items-center justify-center mb-2.5 px-1">
+                <h3 className="font-title text-[12.5px] tracking-[0.18em] text-[#123326] uppercase font-bold">
                   August 2025
                 </h3>
-                <Search size={16} className="absolute right-0 text-[#123326] opacity-90 cursor-pointer" />
+                <Search size={14} className="absolute right-0 text-[#123326] opacity-90 cursor-pointer" />
               </div>
 
               {/* Grid of Days */}
-              <div className="grid grid-cols-7 gap-y-1 gap-x-1 text-center">
+              <div className="grid grid-cols-7 gap-y-0.5 gap-x-1 text-center">
                 {/* Weekday headers */}
                 {dayHeaders.map((day) => (
-                  <div 
-                    key={day} 
-                    className="text-[9.5px] font-bold text-[#2C5846] font-title tracking-wider py-1"
+                  <div
+                    key={day}
+                    className="text-[8.5px] font-bold text-[#2C5846] font-title tracking-wider py-0.5"
                   >
                     {day}
                   </div>
                 ))}
-                
+
                 {/* Day numbers */}
                 {calendarDays.map((day, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-center h-6.5"
+                    className="flex items-center justify-center h-5"
                   >
                     {day ? (
                       <div
-                        className={`font-title text-[11.5px] font-semibold flex items-center justify-center transition-all duration-300 ${
-                          day === 24
-                            ? "bg-[#123326] text-[#E1EEE6] rounded-full w-[24px] h-[24px] font-bold shadow-sm"
-                            : "text-[#123326]"
-                        }`}
+                        className={`font-title text-[10px] font-semibold flex items-center justify-center transition-all duration-300 ${day === 24
+                          ? "bg-[#123326] text-[#E1EEE6] rounded-full w-[20px] h-[20px] font-bold shadow-sm"
+                          : "text-[#123326]"
+                          }`}
                       >
                         {day}
                       </div>
                     ) : (
-                      <span className="w-[24px] h-[24px]" />
+                      <span className="w-[20px] h-[20px]" />
                     )}
                   </div>
                 ))}
@@ -172,15 +171,15 @@ export default function ReceptionStamp() {
             </motion.div>
 
             {/* Action Buttons Grid */}
-            <div className="grid grid-cols-2 gap-3 w-full">
+            <div className="grid grid-cols-2 gap-2 w-[85%]">
               <a
                 href={calendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl border border-[#123326]/20 bg-[#D6EAE0]/50 hover:bg-[#D6EAE0]/80 transition-all duration-300 w-full text-left no-underline cursor-pointer"
+                className="flex items-center gap-2 px-2.5 py-2 rounded-xl border border-[#123326]/20 bg-[#EBE9D1]/50 hover:bg-[#EBE9D1]/80 transition-all duration-300 w-full text-left no-underline cursor-pointer"
               >
-                <Calendar size={20} className="text-[#123326] shrink-0" />
-                <div className="flex flex-col items-start leading-[1.15] font-title text-[9.5px] font-bold tracking-wider text-[#123326]">
+                <Calendar size={16} className="text-[#123326] shrink-0" />
+                <div className="flex flex-col items-start leading-[1.15] font-title text-[8.5px] font-bold tracking-wider text-[#123326]">
                   <span>ADD TO</span>
                   <span>CALENDAR</span>
                 </div>
@@ -190,10 +189,10 @@ export default function ReceptionStamp() {
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl border border-[#123326]/20 bg-[#D6EAE0]/50 hover:bg-[#D6EAE0]/80 transition-all duration-300 w-full text-left no-underline cursor-pointer"
+                className="flex items-center gap-2 px-2.5 py-2 rounded-xl border border-[#123326]/20 bg-[#EBE9D1]/50 hover:bg-[#EBE9D1]/80 transition-all duration-300 w-full text-left no-underline cursor-pointer"
               >
-                <MapPin size={20} className="text-[#123326] shrink-0" />
-                <div className="flex flex-col items-start leading-[1.15] font-title text-[9.5px] font-bold tracking-wider text-[#123326]">
+                <MapPin size={16} className="text-[#123326] shrink-0" />
+                <div className="flex flex-col items-start leading-[1.15] font-title text-[8.5px] font-bold tracking-wider text-[#123326]">
                   <span>VIEW</span>
                   <span>LOCATION</span>
                 </div>

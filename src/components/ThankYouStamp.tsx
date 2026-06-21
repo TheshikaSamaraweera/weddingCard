@@ -13,14 +13,14 @@ export default function ThankYouStamp() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[410px]"
       >
-        <EmptyStamp showPostmark={true}>
-          <div className="flex flex-col items-center h-full justify-between w-full pt-8 pb-0">
+        <EmptyStamp showPostmark={true} className="h-[620px]">
+          <div className="flex flex-col items-center h-full justify-between w-full pt-14 pb-0">
             {/* Text Section */}
             <div className="flex flex-col items-center px-6">
               <h2 className="font-title text-2xl tracking-[0.15em] text-[#1F4A3A] uppercase mt-4 mb-6 font-bold">
                 Thank You
               </h2>
-              
+
               <div className="text-center space-y-4 font-body text-[14px] text-[#1A3B2E] tracking-wide">
                 <p>
                   Thank you for being<br />a special part of our journey.
@@ -37,7 +37,7 @@ export default function ThankYouStamp() {
             </div>
 
             {/* Couple Illustration */}
-            <div className="mt-8 flex justify-center items-end w-full relative">
+            <div className="flex justify-center items-end w-[55%] relative">
               <motion.img
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
