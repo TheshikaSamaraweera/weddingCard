@@ -105,12 +105,19 @@ export default function StampNavigation() {
             return (
               <motion.button
                 key={item.target}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -40, scale: 0.9 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{
+                  delay: index * 0.12,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15,
+                }}
+                whileHover={{ scale: 1.03, y: -2, boxShadow: "0 8px 30px rgba(13, 43, 31, 0.25)" }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => scrollTo(item.target)}
-                className="w-full relative bg-[#F7F6E2] border-2 border-[#1F4A3A] p-1.5 shadow-lg block hover:bg-[#EBE9D1] transition-colors"
+                className="w-full relative bg-[#F7F6E2] border-2 border-[#1F4A3A] p-1.5 shadow-lg block hover:bg-[#EBE9D1] transition-colors ripple-effect"
                 aria-label={`Go to ${item.title}`}
               >
                 {/* Inner Border with Dots */}
@@ -124,9 +131,13 @@ export default function StampNavigation() {
 
                 <div className="flex w-full relative z-10 py-3 px-2 items-center">
                   {/* Icon Section */}
-                  <div className="w-[60px] flex items-center justify-center text-[#1F4A3A]">
+                  <motion.div
+                    className="w-[60px] flex items-center justify-center text-[#1F4A3A]"
+                    whileHover={{ rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <Icon size={30} strokeWidth={1.5} />
-                  </div>
+                  </motion.div>
                   
                   {/* Vertical Divider */}
                   <div className="w-[1px] h-[40px] bg-[#1F4A3A]/40 mx-2" />

@@ -468,3 +468,164 @@ section {
 .action-btn:hover {
   background: rgba(31, 74, 58, 0.08);
 }
+
+/* ============================================
+   PREMIUM ANIMATIONS
+   ============================================ */
+
+/* Floating golden particles background */
+@keyframes particleFloat {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+.particle-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(210, 230, 219, 0.8), transparent);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+}
+
+/* Soft breathing glow for stamps */
+@keyframes breatheGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(13, 43, 31, 0.1); }
+  50% { box-shadow: 0 8px 40px rgba(13, 43, 31, 0.25); }
+}
+
+.breathe-glow {
+  animation: breatheGlow 4s ease-in-out infinite;
+}
+
+/* Text shimmer reveal */
+@keyframes textReveal {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #0D2B1F 0%,
+    #2B5746 25%,
+    #D2E6DB 50%,
+    #2B5746 75%,
+    #0D2B1F 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textReveal 3s linear infinite;
+}
+
+/* Gentle rotation for decorative elements */
+@keyframes gentleRotate {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.gentle-rotate {
+  animation: gentleRotate 6s ease-in-out infinite;
+}
+
+/* Scale bounce for interactive elements */
+@keyframes scaleBounce {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.1); }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Sparkle twinkle effect */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(210, 230, 219, 0.9), transparent);
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Line draw animation */
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-out forwards;
+}
+
+/* Gentle sway for decorative elements */
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.sway {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  10% { transform: scale(1.15); }
+  20% { transform: scale(1); }
+  30% { transform: scale(1.15); }
+  40% { transform: scale(1); }
+}
+
+.heartbeat {
+  animation: heartbeat 2.5s ease-in-out infinite;
+}
+
+/* Soft focus-in for images */
+@keyframes focusIn {
+  0% { filter: blur(8px); opacity: 0; }
+  100% { filter: blur(0); opacity: 1; }
+}
+
+.focus-in {
+  animation: focusIn 1.2s ease-out forwards;
+}
+
+/* Ripple effect for buttons */
+@keyframes ripple {
+  0% { box-shadow: 0 0 0 0 rgba(31, 74, 58, 0.3); }
+  100% { box-shadow: 0 0 0 15px rgba(31, 74, 58, 0); }
+}
+
+.ripple-effect:active {
+  animation: ripple 0.6s ease-out;
+}
+
+/* Scroll indicator bounce */
+@keyframes scrollHint {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+.scroll-hint {
+  animation: scrollHint 2s ease-in-out infinite;
+}

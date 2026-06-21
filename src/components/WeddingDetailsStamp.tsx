@@ -69,16 +69,32 @@ export default function WeddingDetailsStamp() {
               <div className="mb-2 text-[#0D2B1F]">
                 {/* <TempleIcon /> */}
               </div>
-              <h2 className="font-title text-[22px] text-[#0D2B1F] tracking-widest uppercase font-bold text-center mt-14">
+              <motion.h2
+                className="font-title text-[22px] text-[#0D2B1F] tracking-widest uppercase font-bold text-center mt-14"
+                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                 WEDDING DETAILS
-              </h2>
+              </motion.h2>
 
               {/* Fancy Divider */}
-              <div className="flex items-center justify-center gap-3 my-4">
+              <motion.div
+                className="flex items-center justify-center gap-3 my-4"
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-[#0D2B1F]/60" />
-                <img src="/seal1.png" alt="Seal Ornament" className="w-8 h-8 object-contain opacity-85" />
+                <motion.img
+                  src="/seal1.png"
+                  alt="Seal Ornament"
+                  className="w-8 h-8 object-contain opacity-85 gentle-rotate"
+                />
                 <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-[#0D2B1F]/60" />
-              </div>
+              </motion.div>
 
               <h3 className="font-title text-[15px] text-[#0D2B1F] tracking-widest uppercase font-bold mb-4">
                 THE CEREMONY
@@ -92,10 +108,15 @@ export default function WeddingDetailsStamp() {
                     <motion.div
                       key={item.label}
                       className="flex items-start gap-4"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, x: -30, filter: "blur(4px)" }}
+                      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                       viewport={{ once: true }}
-                      transition={{ delay: index * 0.15 }}
+                      transition={{
+                        delay: index * 0.18,
+                        type: "spring",
+                        stiffness: 80,
+                        damping: 15,
+                      }}
                     >
                       <div className="mt-1.5 text-[#0D2B1F]">
                         <Icon size={26} strokeWidth={1.8} />
@@ -117,10 +138,10 @@ export default function WeddingDetailsStamp() {
             {/* Bottom Graphic - home2 */}
             <div className="w-full flex justify-center mt-4 relative z-20">
               <motion.img
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.9, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                 src="/home2.png"
                 alt="Kandyan Heritage Hotel"
                 className="w-full max-w-[230px] object-contain drop-shadow-md"

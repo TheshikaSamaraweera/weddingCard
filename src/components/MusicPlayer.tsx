@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -30,21 +31,50 @@ export default function MusicPlayer() {
     <>
       <audio ref={audioRef} loop src="/music.mp3" preload="none" />
 
-      <button
-        onClick={toggleMusic}
-        className="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300"
-        style={{
-          background: "linear-gradient(135deg, #1F4A3A, #123326)",
-          boxShadow: "0 4px 15px rgba(201, 166, 107, 0.4)",
-        }}
-        aria-label={playing ? "Pause music" : "Play music"}
-      >
-        {playing ? (
-          <Volume2 size={18} className="text-white" />
-        ) : (
-          <VolumeX size={18} className="text-white" />
+      <div className="fixed bottom-5 right-5 z-50 flex items-center justify-center">
+        {/* Animated ripple rings when playing */}
+        {playing && (
+          <>
+            <motion.div
+              className="absolute w-12 h-12 rounded-full bg-[#1F4A3A]/30"
+              animate={{ scale: [1, 2.2], opacity: [0.8, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeOut" }}
+            />
+            <motion.div
+              className="absolute w-12 h-12 rounded-full bg-[#C9A66B]/20"
+              animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeOut", delay: 0.6 }}
+            />
+            {/* Soft pulse glow */}
+            <motion.div
+              className="absolute w-12 h-12 rounded-full bg-[#1F4A3A]/20"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            />
+          </>
         )}
-      </button>
+
+        <motion.button
+          onClick={toggleMusic}
+          whileHover={{ scale: 1.1, boxShadow: "0 6px 20px rgba(201, 166, 107, 0.6)" }}
+          whileTap={{ scale: 0.9 }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1 }}
+          className="relative w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 cursor-pointer"
+          style={{
+            background: "linear-gradient(135deg, #1F4A3A, #123326)",
+            boxShadow: "0 4px 15px rgba(201, 166, 107, 0.4)",
+          }}
+          aria-label={playing ? "Pause music" : "Play music"}
+        >
+          {playing ? (
+            <Volume2 size={18} className="text-white" />
+          ) : (
+            <VolumeX size={18} className="text-white" />
+          )}
+        </motion.button>
+      </div>
     </>
   );
 }

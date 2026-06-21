@@ -59,7 +59,9 @@ export default function RSVPForm() {
 
             {/* RSVP Buttons Grid */}
             <div className="grid grid-cols-2 gap-3 w-[75%] mx-auto">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.06, y: -2, boxShadow: "0 4px 12px rgba(18, 51, 38, 0.15)" }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => submitRSVP("attending")}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${attendance === "attending"
                   ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
@@ -74,9 +76,11 @@ export default function RSVPForm() {
                   <span>HAPPILY</span>
                   <span>ATTENDING</span>
                 </div>
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.06, y: -2, boxShadow: "0 4px 12px rgba(18, 51, 38, 0.15)" }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => submitRSVP("blessings")}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 w-full text-left cursor-pointer ${attendance === "blessings"
                   ? "bg-[#123326] text-[#E1EEE6] border-[#123326] shadow-md"
@@ -90,37 +94,46 @@ export default function RSVPForm() {
                   <span>SENDING</span>
                   <span>BLESSINGS</span>
                 </div>
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         ) : (
           <motion.div
             key="confirmed"
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 0.6, opacity: 0, rotate: -45 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{
               type: "spring",
-              stiffness: 200,
-              damping: 15,
+              stiffness: 260,
+              damping: 18,
             }}
             className="flex flex-col items-center py-4"
           >
             {/* Gold seal confirmation */}
-            <div className="wax-seal w-[90px] h-[90px] shadow-xl">
-              <div className="text-center">
-                <span className="text-white font-title text-[10px] tracking-wider block font-bold">
+            <motion.div 
+              className="wax-seal w-[90px] h-[90px] shadow-xl relative"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+              <div className="text-center absolute inset-0 flex items-center justify-center">
+                <span className="text-white font-title text-[10px] tracking-wider block font-bold leading-tight">
                   {attendance === "attending"
                     ? "CONFIRMED"
                     : "BLESSED"}
                 </span>
               </div>
-            </div>
+            </motion.div>
 
-            <p className="mt-4 text-[14.5px] text-center font-body text-[#1A3B2E] font-semibold leading-relaxed">
+            <motion.p 
+              className="mt-4 text-[14.5px] text-center font-body text-[#1A3B2E] font-semibold leading-relaxed"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               {attendance === "attending"
                 ? "We look forward to celebrating with you!"
                 : "Thank you for your blessings!"}
-            </p>
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>

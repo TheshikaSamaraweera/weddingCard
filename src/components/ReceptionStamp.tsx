@@ -112,19 +112,32 @@ export default function ReceptionStamp() {
 
             {/* Header */}
             <div className="text-center mb-3 mt-16">
-              <h2 className="font-title text-[22px] text-[#123326] tracking-[0.2em] uppercase font-bold text-center leading-none">
+              <motion.h2
+                className="font-title text-[22px] text-[#123326] tracking-[0.2em] uppercase font-bold text-center leading-none"
+                initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
                 RECEPTION
-              </h2>
-              <p className="font-title text-[10px] tracking-[0.2em] text-[#2C5846] mt-1.5 uppercase font-semibold">
+              </motion.h2>
+              <motion.p
+                className="font-title text-[10px] tracking-[0.2em] text-[#2C5846] mt-1.5 uppercase font-semibold"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 PLEASE JOIN US
-              </p>
+              </motion.p>
             </div>
 
             {/* Calendar Widget Container */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.2 }}
               className="bg-[#EBE9D1]/50 border border-[#A6C9B7]/40 p-2 pb-2 rounded-2xl shadow-[inset_0_1px_2px_rgba(255,255,255,0.4)] w-[85%] mb-3"
             >
               {/* Calendar Month Header */}

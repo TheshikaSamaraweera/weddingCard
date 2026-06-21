@@ -29,46 +29,103 @@ export default function StampContainer({
       >
         <div className="stamp-card relative p-7 overflow-hidden">
           {/* Corner ornaments */}
-          <div
+          <motion.div
             className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-[#1F4A3A] opacity-60"
             aria-hidden="true"
+            initial={{ x: -10, y: -10, opacity: 0 }}
+            whileInView={{ x: 0, y: 0, opacity: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           />
-          <div
+          <motion.div
             className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-[#1F4A3A] opacity-60"
             aria-hidden="true"
+            initial={{ x: 10, y: -10, opacity: 0 }}
+            whileInView={{ x: 0, y: 0, opacity: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           />
-          <div
+          <motion.div
             className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-[#1F4A3A] opacity-60"
             aria-hidden="true"
+            initial={{ x: -10, y: 10, opacity: 0 }}
+            whileInView={{ x: 0, y: 0, opacity: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           />
-          <div
+          <motion.div
             className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-[#1F4A3A] opacity-60"
             aria-hidden="true"
+            initial={{ x: 10, y: 10, opacity: 0 }}
+            whileInView={{ x: 0, y: 0, opacity: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           />
 
           {/* Content */}
           <div className="relative z-[1]">
             {/* Title */}
-            <h2 className="font-title text-center text-2xl tracking-[0.15em] gold-text uppercase">
+            <motion.h2 
+              className="font-title text-center text-2xl tracking-[0.15em] gold-text uppercase"
+              initial={{ opacity: 0, y: 15, filter: "blur(3px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
               {title}
-            </h2>
+            </motion.h2>
 
             {/* Decorative divider */}
-            <div className="flex items-center justify-center gap-3 my-4">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#1F4A3A]" />
-              <div className="w-2 h-2 rotate-45 bg-[#1F4A3A] opacity-60" />
-              <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#1F4A3A]" />
-            </div>
+            <motion.div 
+              className="flex items-center justify-center gap-3 my-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div 
+                className="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#1F4A3A]" 
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
+              <motion.div 
+                className="w-2 h-2 rotate-45 bg-[#1F4A3A] opacity-60"
+                animate={{ rotate: [45, 225, 45] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#1F4A3A]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
+            </motion.div>
 
             {/* Subtitle */}
             {subtitle && (
-              <p className="font-title text-center text-[11px] tracking-[0.2em] text-[#2C5846] uppercase mb-6">
+              <motion.p 
+                className="font-title text-center text-[11px] tracking-[0.2em] text-[#2C5846] uppercase mb-6"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+              >
                 {subtitle}
-              </p>
+              </motion.p>
             )}
 
             {/* Children */}
-            {children}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {children}
+            </motion.div>
           </div>
         </div>
       </motion.div>

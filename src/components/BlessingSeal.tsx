@@ -131,37 +131,117 @@ export default function BlessingSeal() {
       >
         <EmptyStamp showPostmark={false} className="pb-8 h-[620px]">
           {/* Custom Gold Corner Ornaments */}
-          <CornerOrnament className="absolute top-5 left-5" />
-          <CornerOrnament className="absolute top-5 right-5 rotate-90" />
-          <CornerOrnament className="absolute bottom-5 left-5 -rotate-90" />
-          <CornerOrnament className="absolute bottom-5 right-5 rotate-180" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 0.7, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute top-5 left-5"
+          >
+            <CornerOrnament />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 0.7, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute top-5 right-5 rotate-90"
+          >
+            <CornerOrnament />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 0.7, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute bottom-5 left-5 -rotate-90"
+          >
+            <CornerOrnament />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 0.7, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute bottom-5 right-5 rotate-180"
+          >
+            <CornerOrnament />
+          </motion.div>
 
           {/* Tiny accent decoration at the top center */}
-          <div className="absolute top-[22px] left-1/2 -translate-x-1/2">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 0.75, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="absolute top-[22px] left-1/2 -translate-x-1/2"
+          >
             <TopAccentOrnament />
-          </div>
+          </motion.div>
 
           {/* Bottom corner flower decorations */}
-          <BottomLeftFlower />
-          <BottomRightFlower />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, rotate: -15 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.4 }}
+            className="absolute bottom-4 left-4 pointer-events-none select-none"
+          >
+            <BottomLeftFlower />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, rotate: 15 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.4 }}
+            className="absolute bottom-4 right-4 pointer-events-none select-none"
+          >
+            <BottomRightFlower />
+          </motion.div>
 
           <div className="flex flex-col items-center justify-between w-full h-full relative z-10 pt-10 min-h-[420px]">
 
             {/* Header Area */}
             <div className="text-center mb-2 mt-10">
-              <h2 className="font-title text-[20px] text-[#123326] tracking-[0.15em] uppercase font-bold text-center leading-none">
+              <motion.h2 
+                className="font-title text-[20px] text-[#123326] tracking-[0.15em] uppercase font-bold text-center leading-none"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
                 SEAL YOUR BLESSINGS
-              </h2>
-              <p className="font-title text-[10.5px] tracking-[0.18em] text-[#2C5846] mt-2 uppercase font-semibold">
+              </motion.h2>
+              <motion.p 
+                className="font-title text-[10.5px] tracking-[0.18em] text-[#2C5846] mt-2 uppercase font-semibold"
+                animate={sealed ? { scale: [1, 1.05, 1], color: "#C9A66B" } : {}}
+                transition={{ duration: 0.5 }}
+              >
                 {sealed ? "YOUR BLESSINGS ARE SEALED!" : "TAP THE SEAL"}
-              </p>
+              </motion.p>
             </div>
 
             {/* Central Seal Area with flanking branches */}
             <div className="relative my-2 flex items-center justify-center w-[200px] h-[200px]">
-              {/* Flanking leaf branches */}
-              <LeftBranch />
-              <RightBranch />
+              {/* Flanking leaf branches with slow swing animation */}
+              <motion.div
+                animate={{ rotate: [-2, 2, -2] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                className="absolute left-[-48px] top-[30px]"
+              >
+                <LeftBranch />
+              </motion.div>
+              <motion.div
+                animate={{ rotate: [2, -2, 2] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                className="absolute right-[-48px] top-[30px]"
+              >
+                <RightBranch />
+              </motion.div>
 
               {/* Interactive Seal */}
               <AnimatePresence mode="wait">
@@ -169,16 +249,26 @@ export default function BlessingSeal() {
                   <motion.button
                     key="unsealed"
                     onClick={() => setSealed(true)}
-                    whileTap={{ scale: 0.92 }}
-                    whileHover={{ scale: 1.03 }}
-                    className="absolute cursor-pointer seal-pulse focus:outline-none"
+                    whileTap={{ scale: 0.90 }}
+                    whileHover={{ scale: 1.05, rotate: 2 }}
+                    className="absolute cursor-pointer seal-pulse focus:outline-none z-30"
                     aria-label="Tap to seal your blessings"
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    exit={{ 
+                      scale: [1, 1.2, 0], 
+                      opacity: 0,
+                      rotate: 45,
+                      transition: { duration: 0.4, ease: "easeInOut" } 
+                    }}
                   >
-                    <div className="wax-seal w-[170px] h-[170px] shadow-xl gold-glow">
-                      <div className="text-center">
-                        <span className="text-white text-4xl block mb-0.5">♥</span>
+                    <div className="wax-seal w-[170px] h-[170px] shadow-xl gold-glow relative">
+                      <div className="text-center absolute inset-0 flex flex-col items-center justify-center">
+                        <motion.span 
+                          className="text-white text-4xl block mb-0.5"
+                          animate={{ scale: [1, 1.15, 1] }}
+                          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        >
+                          ♥
+                        </motion.span>
                         <span className="text-white/90 font-title text-[10.5px] tracking-widest block font-bold leading-tight">
                           TAP TO
                         </span>
@@ -191,29 +281,52 @@ export default function BlessingSeal() {
                 ) : (
                   <motion.div
                     key="sealed"
-                    className="absolute stamp-press z-20"
+                    className="absolute z-20"
+                    initial={{ scale: 3, opacity: 0, rotate: -45 }}
+                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                    }}
                   >
+                    {/* Stamp Press Effect ring */}
+                    <motion.div 
+                      className="absolute inset-0 rounded-full border-4 border-[#C9A66B]/50"
+                      initial={{ scale: 1, opacity: 1 }}
+                      animate={{ scale: 1.6, opacity: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
                     <img
                       src="/seal2.png"
                       alt="Sealed Blessings"
-                      className="w-[180px] h-[180px] object-contain drop-shadow-xl"
+                      className="w-[180px] h-[180px] object-contain drop-shadow-2xl"
                     />
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            With Love 🤍
-            <p className="font-title text-[16px] tracking-[0.18em] text-[#123326] uppercase font-bold">
-              MUDITHA & MAHELI
-            </p>
-            <div className="text-center mt-14 flex flex-col items-center">
-              <p className="font-title text-[14px] font-light text-[#123326] tracking-[0.15em] uppercase">
-
+            {/* Bottom Credit Area */}
+            <motion.div 
+              className="text-center flex flex-col items-center justify-center -mt-6 z-10"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <p className="font-body text-[22px] italic text-[#123326] leading-none mb-1">
+                With Love 🤍
               </p>
-
-              <span className="text-[#123326] text-sm block mt-2 mb-1">♥</span>
-            </div>
+              <p className="font-title text-[15px] tracking-[0.18em] text-[#123326] uppercase font-bold">
+                MUDITHA & MAHELI
+              </p>
+              <div className="flex items-center justify-center mt-3 gap-2">
+                <span className="h-[1px] w-8 bg-[#123326]/20" />
+                <span className="text-[#123326]/60 text-xs">♥</span>
+                <span className="h-[1px] w-8 bg-[#123326]/20" />
+              </div>
+            </motion.div>
 
           </div>
         </EmptyStamp>
