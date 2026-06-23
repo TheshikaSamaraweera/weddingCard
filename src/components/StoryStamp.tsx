@@ -9,16 +9,19 @@ const storyItems = [
     date: "12th March 2021",
     title: "FIRST MEETING",
     text: "We met for the first time\nand the rest is history.",
+    image: "/firstmeet.jpeg",
   },
   {
     date: "08th May 2023",
     title: "THE PROPOSAL",
     text: "He asked,\nI said yes! 🤍",
+    image: "/perpose.jpeg",
   },
   {
     date: "20th October 2023",
     title: "ENGAGEMENT",
     text: "A promise made,\nA lifetime sealed.",
+    image: "/engaged.jpeg",
   },
 ];
 
@@ -116,7 +119,7 @@ export default function StoryStamp() {
                       transition={{ type: "spring", stiffness: 120, damping: 12 }}
                     >
                       <img
-                        src="/couple.png"
+                        src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover object-top scale-110"
                       />

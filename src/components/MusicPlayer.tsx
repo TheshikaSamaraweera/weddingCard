@@ -11,6 +11,13 @@ export default function MusicPlayer() {
   useEffect(() => {
     if (!audioRef.current) return;
     audioRef.current.volume = 0.4;
+
+    // Attempt autoplay
+    audioRef.current.play().then(() => {
+      setPlaying(true);
+    }).catch(() => {
+      // Autoplay blocked by browser - user can click to play
+    });
   }, []);
 
   const toggleMusic = () => {
@@ -29,7 +36,7 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <audio ref={audioRef} loop src="/music.mp3" preload="none" />
+      <audio ref={audioRef} loop src="/intro.mp3" preload="auto" />
 
       <div className="fixed bottom-5 right-5 z-50 flex items-center justify-center">
         {/* Animated ripple rings when playing */}

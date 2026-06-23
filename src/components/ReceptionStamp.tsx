@@ -183,8 +183,15 @@ export default function ReceptionStamp() {
               </div>
             </motion.div>
 
+
+
+            {/* RSVP Form Component */}
+            <div id="rsvp" className="w-full">
+              <RSVPForm />
+            </div>
+
             {/* Action Buttons Grid */}
-            <div className="grid grid-cols-2 gap-2 w-[85%]">
+            <div className="grid grid-cols-2 gap-2 w-[85%] mt-4">
               <a
                 href={calendarUrl}
                 target="_blank"
@@ -210,14 +217,6 @@ export default function ReceptionStamp() {
                   <span>LOCATION</span>
                 </div>
               </a>
-            </div>
-
-            {/* Elegant Leaf Divider */}
-            <OrnateDivider />
-
-            {/* RSVP Form Component */}
-            <div id="rsvp" className="w-full">
-              <RSVPForm />
             </div>
 
           </div>

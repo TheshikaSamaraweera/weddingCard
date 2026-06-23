@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Envelope from "@/components/Envelope";
 import StampNavigation from "@/components/StampNavigation";
@@ -89,8 +90,10 @@ const lineGrow: Variants = {
   },
 };
 
-export default function Home() {
+function InvitationContent() {
   const [opened, setOpened] = useState(false);
+  const searchParams = useSearchParams();
+  const guestName = searchParams.get("to") || "";
 
   return (
     <main className="mobile-container relative bg-transparent min-h-screen">
@@ -108,7 +111,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-50 bg-[var(--deep-bg)]"
           >
-            <Envelope onOpen={() => setOpened(true)} />
+            <Envelope onOpen={() => setOpened(true)} guestName={guestName} />
           </motion.div>
         ) : (
           <motion.div
@@ -261,11 +264,11 @@ export default function Home() {
             {/* Reception & RSVP - Screen 6 */}
             <ReceptionStamp />
 
-            {/* Thank You - Screen 8 */}
-            <ThankYouStamp />
-
-            {/* Final Seal - Screen 9 */}
+            {/* Final Seal - Screen 8 */}
             <BlessingSeal />
+
+            {/* Thank You - Screen 9 */}
+            <ThankYouStamp />
 
             {/* Global Music Player */}
             <MusicPlayer />
@@ -273,5 +276,13 @@ export default function Home() {
         )}
       </AnimatePresence>
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0D2B1F]" />}>
+      <InvitationContent />
+    </Suspense>
   );
 }
