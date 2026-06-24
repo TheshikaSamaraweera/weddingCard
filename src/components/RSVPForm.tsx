@@ -70,13 +70,13 @@ export default function RSVPForm() {
               <h3 className="font-title text-[18px] tracking-[0.2em] text-[#123326] uppercase font-bold">
                 RSVP
               </h3>
-              <motion.p 
+              <motion.p
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3, type: "spring", bounce: 0.4 }}
                 className="font-title text-[10px] tracking-[0.12em] text-[#2C5846] mt-1.5 uppercase font-bold"
               >
-                Kindly confirm before 10th June 2026
+                Kindly confirm before 10th July 2026
               </motion.p>
             </div>
 
@@ -86,9 +86,9 @@ export default function RSVPForm() {
               <motion.button
                 whileHover={{ scale: 1.15, y: -4, boxShadow: "0 8px 20px rgba(18, 51, 38, 0.4)" }}
                 whileTap={{ scale: 0.96 }}
-                animate={{ 
+                animate={{
                   scale: [1, 1.04, 1],
-                  boxShadow: ["0 4px 6px rgba(18, 51, 38, 0.1)", "0 8px 15px rgba(18, 51, 38, 0.25)", "0 4px 6px rgba(18, 51, 38, 0.1)"] 
+                  boxShadow: ["0 4px 6px rgba(18, 51, 38, 0.1)", "0 8px 15px rgba(18, 51, 38, 0.25)", "0 4px 6px rgba(18, 51, 38, 0.1)"]
                 }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                 onClick={() => setPopup("attending")}
@@ -139,7 +139,7 @@ export default function RSVPForm() {
             className="flex flex-col items-center py-4"
           >
             {/* Gold seal confirmation */}
-            <motion.div 
+            <motion.div
               className="wax-seal w-[90px] h-[90px] shadow-xl relative"
               animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -153,7 +153,7 @@ export default function RSVPForm() {
               </div>
             </motion.div>
 
-            <motion.p 
+            <motion.p
               className="mt-4 text-[14.5px] text-center font-body text-[#1A3B2E] font-semibold leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -184,8 +184,8 @@ export default function RSVPForm() {
               onClick={(e) => e.stopPropagation()}
               className="bg-[#FDFBF7] rounded-2xl p-6 w-full max-w-xs relative shadow-2xl border border-[#123326]/20"
             >
-              <button 
-                onClick={() => setPopup("none")} 
+              <button
+                onClick={() => setPopup("none")}
                 className="absolute top-4 right-4 text-[#123326]/50 hover:text-[#123326] transition-colors"
               >
                 ✕

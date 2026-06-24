@@ -56,7 +56,7 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <audio ref={audioRef} loop src="/intro.mp3" preload="auto" />
+      <audio ref={audioRef} autoPlay loop src="/intro.mp3" preload="auto" />
 
       <div className="fixed bottom-5 right-5 z-[100] flex items-center justify-center">
         {/* Animated ripple rings when playing */}

@@ -9,7 +9,7 @@ interface EnvelopeProps {
   guestName?: string;
 }
 
-type Phase = "intro" | "waiting" | "opening" | "greeting";
+type Phase = "intro" | "waiting" | "opening";
 
 export default function Envelope({ onOpen, guestName }: EnvelopeProps) {
   const [phase, setPhase] = useState<Phase>("intro");
@@ -29,12 +29,7 @@ export default function Envelope({ onOpen, guestName }: EnvelopeProps) {
   };
 
   const handleVideoEnded = () => {
-    if (guestName) {
-      setPhase("greeting");
-      setTimeout(onOpen, 5000);
-    } else {
-      setTimeout(onOpen, 5000);
-    }
+    onOpen();
   };
 
   return (
@@ -70,54 +65,7 @@ export default function Envelope({ onOpen, guestName }: EnvelopeProps) {
           preload="auto"
         />
 
-        {/* Guest Name Greeting - shown during the 3s delay after envelope video */}
-        <AnimatePresence>
-          {phase === "greeting" && guestName && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.6 }}
-              className="absolute inset-0 z-30 flex items-center justify-center bg-[#0D2B1F]/80 backdrop-blur-sm"
-            >
-              <motion.div className="flex flex-col items-center text-center px-8">
-                <motion.p
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
-                  className="font-title text-[13px] tracking-[0.3em] text-white/70 uppercase mb-4 font-bold"
-                >
-                  We joyfully invite
-                </motion.p>
 
-                <motion.h2
-                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-title text-[38px] text-white leading-tight tracking-wide drop-shadow-lg font-extrabold"
-                >
-                  {guestName}
-                </motion.h2>
-
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
-                  className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent mt-4 mb-3"
-                />
-
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2, duration: 0.6 }}
-                  className="font-title text-[10px] tracking-[0.25em] text-white/50 uppercase"
-                >
-                  To our special day
-                </motion.p>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Swipe up prompt overlay */}
         <AnimatePresence>

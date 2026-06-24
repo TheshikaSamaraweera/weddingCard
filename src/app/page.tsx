@@ -92,6 +92,7 @@ const lineGrow: Variants = {
 
 function InvitationContent() {
   const [opened, setOpened] = useState(false);
+  const [entered, setEntered] = useState(false);
   const searchParams = useSearchParams();
   const guestName = searchParams.get("to") || "";
 
@@ -100,11 +101,70 @@ function InvitationContent() {
       {/* Global floating particles */}
       {opened && <FloatingParticles />}
 
-      {/* Global Music Player - Starts immediately when page loads */}
-      <MusicPlayer />
+      {/* Global Music Player - Starts after user enters */}
+      {entered && <MusicPlayer />}
 
       <AnimatePresence mode="wait">
-        {!opened ? (
+        {!entered ? (
+          <motion.div
+            key="welcome"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 z-[200] bg-[#0D2B1F] flex flex-col items-center justify-center text-center px-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
+                className="font-title text-[13px] tracking-[0.3em] text-[#EBE9D1]/70 uppercase mb-4 font-bold"
+              >
+                We joyfully invite
+              </motion.p>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="font-title text-[38px] text-[#C3A261] leading-tight tracking-wide drop-shadow-lg font-extrabold"
+              >
+                {guestName ? guestName : "You"}
+              </motion.h2>
+
+              <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+                className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#EBE9D1]/50 to-transparent mt-4 mb-3 mx-auto"
+              />
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+                className="font-title text-[10px] tracking-[0.25em] text-[#EBE9D1]/50 uppercase mb-12"
+              >
+                To our special day
+              </motion.p>
+
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.8, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setEntered(true)}
+                className="px-8 py-3 bg-transparent border border-[#C3A261] text-[#C3A261] font-title text-[12px] tracking-[0.2em] uppercase font-bold rounded-full transition-colors hover:bg-[#C3A261]/10 shadow-[0_0_15px_rgba(195,162,97,0.2)]"
+              >
+                Tap to Open
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        ) : !opened ? (
           <motion.div
             key="envelope"
             exit={{

@@ -83,9 +83,9 @@ const OrnateDivider = () => (
 
 export default function ReceptionStamp() {
   const googleMapsUrl =
-    "https://maps.google.com/?q=Manora+Heritage+Jasmin+Hall+Dambadeniya";
+    "https://maps.google.com/?q=Manora+Heritage+Jasmine+Hall+Dambadeniya";
   const calendarUrl =
-    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muditha+%26+Maheli+Wedding&dates=20260720T103000/20260720T160000&location=Manora+Heritage,+Jasmin+Hall,+Dambadeniya";
+    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muditha+%26+Maheli+Wedding&dates=20260720T103000/20260720T160000&location=Manora+Heritage,+Jasmine+Hall,+Dambadeniya";
 
   return (
     <section id="reception" className="min-h-screen flex items-center justify-center px-3 py-16">
