@@ -32,13 +32,27 @@ export default function RSVPForm() {
   const [popup, setPopup] = useState<"none" | "attending" | "not">("none");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const submitRSVP = (type: string) => {
-    setPopup("none");
-    setAttendance(type);
-    setTimeout(() => {
-      setSubmitted(true);
-    }, 400);
+  const submitRSVP = async (type: string) => {
+    setIsLoading(true);
+    try {
+      await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, attendance: type, message }),
+      });
+      setPopup("none");
+      setAttendance(type);
+      setTimeout(() => {
+        setSubmitted(true);
+      }, 400);
+    } catch (error) {
+      console.error("Failed to submit RSVP:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -56,9 +70,14 @@ export default function RSVPForm() {
               <h3 className="font-title text-[18px] tracking-[0.2em] text-[#123326] uppercase font-bold">
                 RSVP
               </h3>
-              <p className="font-title text-[9.5px] tracking-[0.12em] text-[#2C5846] mt-1.5 uppercase font-semibold">
-                Kindly confirm by 10th June 2026
-              </p>
+              <motion.p 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, type: "spring", bounce: 0.4 }}
+                className="font-title text-[10px] tracking-[0.12em] text-[#2C5846] mt-1.5 uppercase font-bold"
+              >
+                Kindly confirm before 10th June 2026
+              </motion.p>
             </div>
 
             {/* RSVP Buttons Grid */}
@@ -185,29 +204,36 @@ export default function RSVPForm() {
                   />
                   <button
                     onClick={() => submitRSVP("attending")}
-                    disabled={!name.trim()}
+                    disabled={!name.trim() || isLoading}
                     className="w-full bg-[#123326] text-[#E1EEE6] rounded-xl py-3 font-title text-[11px] font-bold tracking-widest uppercase disabled:opacity-50 transition-opacity"
                   >
-                    Send Attending
+                    {isLoading ? "Sending..." : "Send Attending"}
                   </button>
                 </div>
               ) : (
                 <div className="flex flex-col">
                   <h4 className="font-title text-[16px] text-[#123326] font-bold text-center mb-4 uppercase tracking-widest">Send Blessings</h4>
                   <p className="text-[12px] text-center text-[#2C5846] mb-4">Leave a message for the couple.</p>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-[#EBE9D1]/30 border border-[#123326]/20 rounded-xl px-4 py-3 text-[#123326] outline-none focus:border-[#123326] transition-colors mb-3 placeholder:text-[#123326]/40 text-sm"
+                  />
                   <textarea
                     placeholder="Why you can't come / Your blessings"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    rows={4}
+                    rows={3}
                     className="w-full bg-[#EBE9D1]/30 border border-[#123326]/20 rounded-xl px-4 py-3 text-[#123326] outline-none focus:border-[#123326] transition-colors mb-4 placeholder:text-[#123326]/40 text-sm resize-none"
                   />
                   <button
                     onClick={() => submitRSVP("blessings")}
-                    disabled={!message.trim()}
+                    disabled={!name.trim() || !message.trim() || isLoading}
                     className="w-full bg-[#123326] text-[#E1EEE6] rounded-xl py-3 font-title text-[11px] font-bold tracking-widest uppercase disabled:opacity-50 transition-opacity"
                   >
-                    Send Message
+                    {isLoading ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               )}

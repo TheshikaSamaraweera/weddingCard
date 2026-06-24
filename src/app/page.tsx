@@ -100,6 +100,9 @@ function InvitationContent() {
       {/* Global floating particles */}
       {opened && <FloatingParticles />}
 
+      {/* Global Music Player - Starts immediately when page loads */}
+      <MusicPlayer />
+
       <AnimatePresence mode="wait">
         {!opened ? (
           <motion.div
@@ -178,7 +181,7 @@ function InvitationContent() {
                       className="font-title text-[10px] tracking-[0.15em] text-[#1F4A3A] uppercase font-bold leading-relaxed mb-4 text-center"
                       variants={textRevealUp}
                     >
-                      Joyfully invite you to<br />celebrate their wedding
+                      Joyfully invite you to<br />celebrate our wedding
                     </motion.p>
 
                     <motion.div
@@ -269,9 +272,6 @@ function InvitationContent() {
 
             {/* Thank You - Screen 9 */}
             <ThankYouStamp />
-
-            {/* Global Music Player */}
-            <MusicPlayer />
           </motion.div>
         )}
       </AnimatePresence>

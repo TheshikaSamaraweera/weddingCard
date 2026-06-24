@@ -20,7 +20,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Muditha & Maheli - Wedding Invitation",
   description:
-    "Together with their families, Muditha and Maheli joyfully invite you to celebrate their wedding on Monday, 20th July 2026 at Manora Heritage, Jasmin Hall, Dambadeniya.",
+    "Together with their families, Muditha and Maheli joyfully invite you to celebrate our wedding on Monday, 20th July 2026 at Manora Heritage, 'e' Hall, Dambadeniya.",
 };
 
 export default function RootLayout({

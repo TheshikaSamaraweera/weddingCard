@@ -17,7 +17,7 @@ export const invitationData: InvitationDetails = {
   day: "Monday",
   time: "10.30 AM - 4.00 PM",
   venue: "Manora Heritage",
-  venueAddress: "Jasmin Hall, Dambadeniya",
+  venueAddress: " 'e' Hall, Dambadeniya",
   dressCode: "Traditional / Formal",
   initials: "M&M",
 };

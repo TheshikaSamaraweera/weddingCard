@@ -12,13 +12,33 @@ export default function MusicPlayer() {
     if (!audioRef.current) return;
     audioRef.current.volume = 0.4;
 
-    // Attempt autoplay
+    const tryPlay = () => {
+      if (audioRef.current && !playing) {
+        audioRef.current.play().then(() => {
+          setPlaying(true);
+          // Remove listeners once it successfully starts playing
+          window.removeEventListener('click', tryPlay);
+          window.removeEventListener('touchstart', tryPlay);
+        }).catch(() => {
+          // Still blocked
+        });
+      }
+    };
+
+    // Attempt autoplay immediately
     audioRef.current.play().then(() => {
       setPlaying(true);
     }).catch(() => {
-      // Autoplay blocked by browser - user can click to play
+      // Autoplay blocked by browser - wait for user interaction
+      window.addEventListener('click', tryPlay);
+      window.addEventListener('touchstart', tryPlay);
     });
-  }, []);
+
+    return () => {
+      window.removeEventListener('click', tryPlay);
+      window.removeEventListener('touchstart', tryPlay);
+    };
+  }, [playing]);
 
   const toggleMusic = () => {
     if (!audioRef.current) return;
@@ -38,7 +58,7 @@ export default function MusicPlayer() {
     <>
       <audio ref={audioRef} loop src="/intro.mp3" preload="auto" />
 
-      <div className="fixed bottom-5 right-5 z-50 flex items-center justify-center">
+      <div className="fixed bottom-5 right-5 z-[100] flex items-center justify-center">
         {/* Animated ripple rings when playing */}
         {playing && (
           <>

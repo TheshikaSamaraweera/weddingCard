@@ -6,19 +6,19 @@ import { Heart } from "lucide-react";
 
 const storyItems = [
   {
-    date: "12th March 2021",
+    date: "02nd September 2024",
     title: "FIRST MEETING",
     text: "We met for the first time\nand the rest is history.",
     image: "/firstmeet.jpeg",
   },
   {
-    date: "08th May 2023",
+    date: "12th January 2025",
     title: "THE PROPOSAL",
-    text: "He asked,\nI said yes! 🤍",
+    text: "I asked,\nShe said yes! 🤍",
     image: "/perpose.jpeg",
   },
   {
-    date: "20th October 2023",
+    date: "12th December 2025",
     title: "ENGAGEMENT",
     text: "A promise made,\nA lifetime sealed.",
     image: "/engaged.jpeg",
