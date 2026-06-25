@@ -332,6 +332,13 @@ function InvitationContent() {
 
             {/* Thank You - Screen 9 */}
             <ThankYouStamp />
+
+            {/* Developer Credit - Fixed on all pages */}
+            <div className="fixed bottom-1 left-0 w-full text-center z-[100] pointer-events-none">
+              <p className="font-title font-bold text-[8px] tracking-[0.2em] uppercase text-white/40 drop-shadow-md">
+                Developed by DemoCode | 0713621414
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

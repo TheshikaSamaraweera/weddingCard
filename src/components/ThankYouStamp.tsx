@@ -80,6 +80,21 @@ export default function ThankYouStamp() {
                 style={{ marginBottom: "-10px" }}
               />
             </div>
+            
+            {/* Highlighted Developer Credit */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 1 }}
+              className="absolute -bottom-10 left-0 w-full text-center pb-4"
+            >
+              <div className="inline-block px-4 py-1.5 rounded-full bg-[#0D2B1F]/10 border border-[#0D2B1F]/20 backdrop-blur-sm">
+                <p className="font-title text-[9px] tracking-[0.25em] uppercase text-[#0D2B1F] font-bold">
+                  Developed by DemoCode <span className="opacity-60 mx-1">|</span> 0713621414
+                </p>
+              </div>
+            </motion.div>
           </div>
         </EmptyStamp>
       </motion.div>

@@ -74,7 +74,7 @@ export default function Envelope({ onOpen, guestName }: EnvelopeProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute bottom-16 left-0 right-0 text-center z-30"
+              className="absolute bottom-28 left-0 right-0 text-center z-30"
             >
               <motion.div
                 animate={{ y: [0, -10, 0] }}
